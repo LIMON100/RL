@@ -33,4 +33,10 @@ class ReplayMemory(object):
         self.memory = []
 
     def push(self, event):
-        self.memory.append()
+        self.memory.append(event)
+        if len(self.memory) > capacity:
+            del self.memory[0]
+
+    def sample(self, batch_size):
+        samples = zip(*random.sample(self.memory, batch_size))
+        return map(lambda x: Variable(torch.cat(x, 0)), samples)
