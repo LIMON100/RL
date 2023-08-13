@@ -70,6 +70,9 @@ class Dqn():
         self.optimizer.zero_grad()
         td_loss.backward(retain_variables = True)
         self.optimizer.step()
+
+    def update(reward, new_signal):
+        new_state = torch.Tensor(new_signal).float().unsequezze(0)
         
 
 
